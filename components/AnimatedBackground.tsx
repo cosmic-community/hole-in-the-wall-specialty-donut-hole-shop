@@ -27,6 +27,7 @@ export default function AnimatedBackground({
 
     // Set canvas size
     const resizeCanvas = () => {
+      if (!canvas) return
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
     }
@@ -49,6 +50,7 @@ export default function AnimatedBackground({
 
       let time = 0
       const animateWaves = () => {
+        if (!canvas || !ctx) return
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         
         waves.forEach(wave => {
@@ -99,6 +101,7 @@ export default function AnimatedBackground({
 
       let time = 0
       const animateBubbles = () => {
+        if (!canvas || !ctx) return
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         
         bubbles.forEach(bubble => {
@@ -159,6 +162,7 @@ export default function AnimatedBackground({
       }))
 
       const animateGeometric = () => {
+        if (!canvas || !ctx) return
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         
         shapes.forEach(shape => {
@@ -230,6 +234,7 @@ export default function AnimatedBackground({
 
       let time = 0
       const animateOrganic = () => {
+        if (!canvas || !ctx) return
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         
         blobs.forEach(blob => {
