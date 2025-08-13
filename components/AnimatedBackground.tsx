@@ -286,7 +286,7 @@ export default function AnimatedBackground({
           for (let i = 0; i < blob.points.length; i++) {
             const angle = (i / blob.points.length) * Math.PI * 2
             const radiusVariation = Math.sin(time * 0.02 + blob.pulsePhase + i) * 20
-            const radius = blob.baseRadius * blob.points[i]! + radiusVariation
+            const radius = blob.baseRadius * (blob.points[i] ?? 0.75) + radiusVariation
             const x = Math.cos(angle) * radius
             const y = Math.sin(angle) * radius
             
