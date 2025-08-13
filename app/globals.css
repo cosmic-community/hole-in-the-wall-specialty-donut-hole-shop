@@ -21,7 +21,7 @@
   }
 
   * {
-    @apply border-border;
+    @apply border-cream-300;
   }
 
   body {
