@@ -27,9 +27,10 @@ export default function AnimatedBackground({
 
     // Set canvas size
     const resizeCanvas = () => {
-      if (!canvas) return
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      const currentCanvas = canvasRef.current
+      if (!currentCanvas) return
+      currentCanvas.width = window.innerWidth
+      currentCanvas.height = window.innerHeight
     }
 
     resizeCanvas()
@@ -50,33 +51,36 @@ export default function AnimatedBackground({
 
       let time = 0
       const animateWaves = () => {
-        if (!canvas || !ctx) return
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        const currentCanvas = canvasRef.current
+        const currentCtx = currentCanvas?.getContext('2d')
+        if (!currentCanvas || !currentCtx) return
+        
+        currentCtx.clearRect(0, 0, currentCanvas.width, currentCanvas.height)
         
         waves.forEach(wave => {
-          ctx.beginPath()
-          ctx.globalAlpha = wave.opacity
+          currentCtx.beginPath()
+          currentCtx.globalAlpha = wave.opacity
           
-          const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
+          const gradient = currentCtx.createLinearGradient(0, 0, 0, currentCanvas.height)
           gradient.addColorStop(0, wave.color + '00')
           gradient.addColorStop(0.5, wave.color + '40')
           gradient.addColorStop(1, wave.color + '00')
           
-          ctx.fillStyle = gradient
+          currentCtx.fillStyle = gradient
           
-          ctx.moveTo(0, canvas.height / 2)
+          currentCtx.moveTo(0, currentCanvas.height / 2)
           
-          for (let x = 0; x <= canvas.width; x += 5) {
-            const y = canvas.height / 2 + 
+          for (let x = 0; x <= currentCanvas.width; x += 5) {
+            const y = currentCanvas.height / 2 + 
                      Math.sin(x * wave.frequency + time * wave.speed + wave.phase) * wave.amplitude +
                      Math.sin(x * wave.frequency * 2 + time * wave.speed * 1.5 + wave.phase) * wave.amplitude * 0.5
-            ctx.lineTo(x, y)
+            currentCtx.lineTo(x, y)
           }
           
-          ctx.lineTo(canvas.width, canvas.height)
-          ctx.lineTo(0, canvas.height)
-          ctx.closePath()
-          ctx.fill()
+          currentCtx.lineTo(currentCanvas.width, currentCanvas.height)
+          currentCtx.lineTo(0, currentCanvas.height)
+          currentCtx.closePath()
+          currentCtx.fill()
         })
         
         time += 1
@@ -101,25 +105,28 @@ export default function AnimatedBackground({
 
       let time = 0
       const animateBubbles = () => {
-        if (!canvas || !ctx) return
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        const currentCanvas = canvasRef.current
+        const currentCtx = currentCanvas?.getContext('2d')
+        if (!currentCanvas || !currentCtx) return
+        
+        currentCtx.clearRect(0, 0, currentCanvas.width, currentCanvas.height)
         
         bubbles.forEach(bubble => {
           // Update position
           bubble.y -= bubble.speed
           if (bubble.y + bubble.radius < 0) {
-            bubble.y = canvas.height + bubble.radius
-            bubble.x = Math.random() * canvas.width
+            bubble.y = currentCanvas.height + bubble.radius
+            bubble.x = Math.random() * currentCanvas.width
           }
           
           // Pulsing effect
           const pulseRadius = bubble.radius + Math.sin(time * bubble.pulseSpeed + bubble.pulsePhase) * 5
           
           // Draw bubble
-          ctx.beginPath()
-          ctx.globalAlpha = bubble.opacity
+          currentCtx.beginPath()
+          currentCtx.globalAlpha = bubble.opacity
           
-          const gradient = ctx.createRadialGradient(
+          const gradient = currentCtx.createRadialGradient(
             bubble.x, bubble.y, 0,
             bubble.x, bubble.y, pulseRadius
           )
@@ -127,16 +134,16 @@ export default function AnimatedBackground({
           gradient.addColorStop(0.7, bubble.color + '20')
           gradient.addColorStop(1, bubble.color + '00')
           
-          ctx.fillStyle = gradient
-          ctx.arc(bubble.x, bubble.y, pulseRadius, 0, Math.PI * 2)
-          ctx.fill()
+          currentCtx.fillStyle = gradient
+          currentCtx.arc(bubble.x, bubble.y, pulseRadius, 0, Math.PI * 2)
+          currentCtx.fill()
           
           // Inner highlight
-          ctx.beginPath()
-          ctx.globalAlpha = bubble.opacity * 0.8
-          ctx.fillStyle = '#ffffff40'
-          ctx.arc(bubble.x - pulseRadius * 0.3, bubble.y - pulseRadius * 0.3, pulseRadius * 0.2, 0, Math.PI * 2)
-          ctx.fill()
+          currentCtx.beginPath()
+          currentCtx.globalAlpha = bubble.opacity * 0.8
+          currentCtx.fillStyle = '#ffffff40'
+          currentCtx.arc(bubble.x - pulseRadius * 0.3, bubble.y - pulseRadius * 0.3, pulseRadius * 0.2, 0, Math.PI * 2)
+          currentCtx.fill()
         })
         
         time += 1
@@ -162,8 +169,11 @@ export default function AnimatedBackground({
       }))
 
       const animateGeometric = () => {
-        if (!canvas || !ctx) return
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        const currentCanvas = canvasRef.current
+        const currentCtx = currentCanvas?.getContext('2d')
+        if (!currentCanvas || !currentCtx) return
+        
+        currentCtx.clearRect(0, 0, currentCanvas.width, currentCanvas.height)
         
         shapes.forEach(shape => {
           // Update position and rotation
@@ -172,42 +182,42 @@ export default function AnimatedBackground({
           shape.rotation += shape.rotationSpeed
           
           // Wrap around screen
-          if (shape.x > canvas.width + shape.size) shape.x = -shape.size
-          if (shape.x < -shape.size) shape.x = canvas.width + shape.size
-          if (shape.y > canvas.height + shape.size) shape.y = -shape.size
-          if (shape.y < -shape.size) shape.y = canvas.height + shape.size
+          if (shape.x > currentCanvas.width + shape.size) shape.x = -shape.size
+          if (shape.x < -shape.size) shape.x = currentCanvas.width + shape.size
+          if (shape.y > currentCanvas.height + shape.size) shape.y = -shape.size
+          if (shape.y < -shape.size) shape.y = currentCanvas.height + shape.size
           
-          ctx.save()
-          ctx.translate(shape.x, shape.y)
-          ctx.rotate(shape.rotation)
-          ctx.globalAlpha = shape.opacity
+          currentCtx.save()
+          currentCtx.translate(shape.x, shape.y)
+          currentCtx.rotate(shape.rotation)
+          currentCtx.globalAlpha = shape.opacity
           
-          const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, shape.size)
+          const gradient = currentCtx.createRadialGradient(0, 0, 0, 0, 0, shape.size)
           gradient.addColorStop(0, shape.color + '60')
           gradient.addColorStop(1, shape.color + '00')
-          ctx.fillStyle = gradient
+          currentCtx.fillStyle = gradient
           
-          ctx.beginPath()
+          currentCtx.beginPath()
           
           if (shape.type === 0) { // Triangle
-            ctx.moveTo(0, -shape.size)
-            ctx.lineTo(-shape.size * 0.866, shape.size * 0.5)
-            ctx.lineTo(shape.size * 0.866, shape.size * 0.5)
+            currentCtx.moveTo(0, -shape.size)
+            currentCtx.lineTo(-shape.size * 0.866, shape.size * 0.5)
+            currentCtx.lineTo(shape.size * 0.866, shape.size * 0.5)
           } else if (shape.type === 1) { // Square
-            ctx.rect(-shape.size * 0.5, -shape.size * 0.5, shape.size, shape.size)
+            currentCtx.rect(-shape.size * 0.5, -shape.size * 0.5, shape.size, shape.size)
           } else { // Hexagon
             for (let i = 0; i < 6; i++) {
               const angle = (i * Math.PI) / 3
               const x = Math.cos(angle) * shape.size
               const y = Math.sin(angle) * shape.size
-              if (i === 0) ctx.moveTo(x, y)
-              else ctx.lineTo(x, y)
+              if (i === 0) currentCtx.moveTo(x, y)
+              else currentCtx.lineTo(x, y)
             }
           }
           
-          ctx.closePath()
-          ctx.fill()
-          ctx.restore()
+          currentCtx.closePath()
+          currentCtx.fill()
+          currentCtx.restore()
         })
         
         animationRef.current = requestAnimationFrame(animateGeometric)
@@ -234,8 +244,11 @@ export default function AnimatedBackground({
 
       let time = 0
       const animateOrganic = () => {
-        if (!canvas || !ctx) return
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        const currentCanvas = canvasRef.current
+        const currentCtx = currentCanvas?.getContext('2d')
+        if (!currentCanvas || !currentCtx) return
+        
+        currentCtx.clearRect(0, 0, currentCanvas.width, currentCanvas.height)
         
         blobs.forEach(blob => {
           // Update position
@@ -244,23 +257,23 @@ export default function AnimatedBackground({
           blob.rotation += blob.rotationSpeed
           
           // Wrap around
-          if (blob.x > canvas.width + blob.baseRadius) blob.x = -blob.baseRadius
-          if (blob.x < -blob.baseRadius) blob.x = canvas.width + blob.baseRadius
-          if (blob.y > canvas.height + blob.baseRadius) blob.y = -blob.baseRadius
-          if (blob.y < -blob.baseRadius) blob.y = canvas.height + blob.baseRadius
+          if (blob.x > currentCanvas.width + blob.baseRadius) blob.x = -blob.baseRadius
+          if (blob.x < -blob.baseRadius) blob.x = currentCanvas.width + blob.baseRadius
+          if (blob.y > currentCanvas.height + blob.baseRadius) blob.y = -blob.baseRadius
+          if (blob.y < -blob.baseRadius) blob.y = currentCanvas.height + blob.baseRadius
           
-          ctx.save()
-          ctx.translate(blob.x, blob.y)
-          ctx.rotate(blob.rotation)
-          ctx.globalAlpha = blob.opacity
+          currentCtx.save()
+          currentCtx.translate(blob.x, blob.y)
+          currentCtx.rotate(blob.rotation)
+          currentCtx.globalAlpha = blob.opacity
           
-          const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, blob.baseRadius * 2)
+          const gradient = currentCtx.createRadialGradient(0, 0, 0, 0, 0, blob.baseRadius * 2)
           gradient.addColorStop(0, blob.color + '80')
           gradient.addColorStop(0.5, blob.color + '40')
           gradient.addColorStop(1, blob.color + '00')
-          ctx.fillStyle = gradient
+          currentCtx.fillStyle = gradient
           
-          ctx.beginPath()
+          currentCtx.beginPath()
           
           for (let i = 0; i < blob.points.length; i++) {
             const angle = (i / blob.points.length) * Math.PI * 2
@@ -269,13 +282,13 @@ export default function AnimatedBackground({
             const x = Math.cos(angle) * radius
             const y = Math.sin(angle) * radius
             
-            if (i === 0) ctx.moveTo(x, y)
-            else ctx.lineTo(x, y)
+            if (i === 0) currentCtx.moveTo(x, y)
+            else currentCtx.lineTo(x, y)
           }
           
-          ctx.closePath()
-          ctx.fill()
-          ctx.restore()
+          currentCtx.closePath()
+          currentCtx.fill()
+          currentCtx.restore()
         })
         
         time += 1
