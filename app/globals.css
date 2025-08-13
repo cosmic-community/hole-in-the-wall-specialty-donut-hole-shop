@@ -2,232 +2,238 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --burgundy-50: #fdf2f8;
-  --burgundy-100: #fce7f3;
-  --burgundy-200: #fbcfe8;
-  --burgundy-300: #f9a8d4;
-  --burgundy-400: #f472b6;
-  --burgundy-500: #ec4899;
-  --burgundy-600: #db2777;
-  --burgundy-700: #be185d;
-  --burgundy-800: #9d174d;
-  --burgundy-900: #831843;
-
-  --cream-50: #fffbf7;
-  --cream-100: #fff7ed;
-  --cream-200: #ffedd5;
-  --cream-300: #fed7aa;
-  --cream-400: #fdba74;
-  --cream-500: #fb923c;
-  --cream-600: #ea580c;
-  --cream-700: #c2410c;
-  --cream-800: #9a3412;
-  --cream-900: #7c2d12;
-
-  --gold-50: #fffbeb;
-  --gold-100: #fef3c7;
-  --gold-200: #fde68a;
-  --gold-300: #fcd34d;
-  --gold-400: #fbbf24;
-  --gold-500: #f59e0b;
-  --gold-600: #d97706;
-  --gold-700: #b45309;
-  --gold-800: #92400e;
-  --gold-900: #78350f;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  @apply bg-cream-50 text-burgundy-900;
-}
-
-.text-gradient {
-  @apply bg-gradient-to-r from-burgundy-600 to-gold-600 bg-clip-text text-transparent;
-}
-
-.hero-shadow {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card-hover {
-  @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
-}
-
-.btn-primary {
-  @apply bg-burgundy-600 hover:bg-burgundy-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
-}
-
-.btn-secondary {
-  @apply bg-gold-500 hover:bg-gold-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
-}
-
-.section-padding {
-  @apply py-16 px-4 sm:px-6 lg:px-8;
-}
-
-.container-width {
-  @apply max-w-7xl mx-auto;
-}
-
-.text-shadow {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.glass-effect {
-  @apply bg-white/80 backdrop-blur-sm;
-}
-
-.donut-hole-shadow {
-  box-shadow: 
-    0 4px 6px -1px rgba(139, 69, 19, 0.1),
-    0 2px 4px -1px rgba(139, 69, 19, 0.06),
-    inset 0 -2px 4px rgba(139, 69, 19, 0.05);
-}
-
-/* Animation keyframes for magical effects */
-@keyframes sparkleAnimation {
-  0%, 100% { 
-    opacity: 0; 
-    transform: scale(0) rotate(0deg); 
-  }
-  50% { 
-    opacity: 1; 
-    transform: scale(1) rotate(180deg); 
-  }
-}
-
-@keyframes particleRise {
-  0% {
-    opacity: 0;
-    transform: translateY(0) translateX(0) scale(0);
-  }
-  10% {
-    opacity: 1;
-    transform: translateY(-10vh) translateX(10px) scale(1);
-  }
-  90% {
-    opacity: 1;
-    transform: translateY(-90vh) translateX(-20px) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-100vh) translateX(-30px) scale(0);
-  }
-}
-
-@keyframes auroraMove {
-  0%, 100% { 
-    transform: translateX(0%) rotate(0deg); 
-    opacity: 0.3;
-  }
-  25% { 
-    transform: translateX(10%) rotate(1deg); 
-    opacity: 0.5;
-  }
-  50% { 
-    transform: translateX(-5%) rotate(-0.5deg); 
-    opacity: 0.4;
-  }
-  75% { 
-    transform: translateX(15%) rotate(0.8deg); 
-    opacity: 0.6;
-  }
-}
-
-@keyframes twinkle {
-  0%, 100% { 
-    opacity: 0.3; 
-    transform: scale(0.8); 
-  }
-  50% { 
-    opacity: 1; 
-    transform: scale(1.2); 
-  }
-}
-
-@keyframes fadeInOut {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 0.3; }
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-cream-100;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-burgundy-400 rounded-lg;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-burgundy-500;
-}
-
-/* Focus styles for accessibility */
-.focus-visible:focus {
-  @apply outline-none ring-2 ring-burgundy-500 ring-offset-2 ring-offset-cream-50;
-}
-
-/* Custom animations for floating elements */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes bounce-slow {
-  0%, 100% {
-    transform: translateY(0);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-  }
-  50% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
-}
-
-@keyframes pulse-slow {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-bounce-slow {
-  animation: bounce-slow 3s infinite;
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Print styles */
-@media print {
-  .no-print {
-    display: none !important;
-  }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    color-scheme: light;
+    --burgundy-50: #fdf2f8;
+    --burgundy-100: #fce7f3;
+    --burgundy-200: #fbcfe8;
+    --burgundy-300: #f9a8d4;
+    --burgundy-400: #f472b6;
+    --burgundy-500: #ec4899;
+    --burgundy-600: #db2777;
+    --burgundy-700: #be185d;
+    --burgundy-800: #9d174d;
+    --burgundy-900: #831843;
+
+    --cream-50: #fffbf7;
+    --cream-100: #fff7ed;
+    --cream-200: #ffedd5;
+    --cream-300: #fed7aa;
+    --cream-400: #fdba74;
+    --cream-500: #fb923c;
+    --cream-600: #ea580c;
+    --cream-700: #c2410c;
+    --cream-800: #9a3412;
+    --cream-900: #7c2d12;
+
+    --gold-50: #fffbeb;
+    --gold-100: #fef3c7;
+    --gold-200: #fde68a;
+    --gold-300: #fcd34d;
+    --gold-400: #fbbf24;
+    --gold-500: #f59e0b;
+    --gold-600: #d97706;
+    --gold-700: #b45309;
+    --gold-800: #92400e;
+    --gold-900: #78350f;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream-50 text-burgundy-900;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-gradient-to-r from-burgundy-600 to-gold-600 bg-clip-text text-transparent;
+  }
+
+  .hero-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+
+  .btn-primary {
+    @apply bg-burgundy-600 hover:bg-burgundy-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply bg-gold-500 hover:bg-gold-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-width {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .text-shadow {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-sm;
+  }
+
+  .donut-hole-shadow {
+    box-shadow: 
+      0 4px 6px -1px rgba(139, 69, 19, 0.1),
+      0 2px 4px -1px rgba(139, 69, 19, 0.06),
+      inset 0 -2px 4px rgba(139, 69, 19, 0.05);
+  }
+}
+
+@layer utilities {
+  /* Animation keyframes for magical effects */
+  @keyframes sparkleAnimation {
+    0%, 100% { 
+      opacity: 0; 
+      transform: scale(0) rotate(0deg); 
+    }
+    50% { 
+      opacity: 1; 
+      transform: scale(1) rotate(180deg); 
+    }
+  }
+
+  @keyframes particleRise {
+    0% {
+      opacity: 0;
+      transform: translateY(0) translateX(0) scale(0);
+    }
+    10% {
+      opacity: 1;
+      transform: translateY(-10vh) translateX(10px) scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(-90vh) translateX(-20px) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-100vh) translateX(-30px) scale(0);
+    }
+  }
+
+  @keyframes auroraMove {
+    0%, 100% { 
+      transform: translateX(0%) rotate(0deg); 
+      opacity: 0.3;
+    }
+    25% { 
+      transform: translateX(10%) rotate(1deg); 
+      opacity: 0.5;
+    }
+    50% { 
+      transform: translateX(-5%) rotate(-0.5deg); 
+      opacity: 0.4;
+    }
+    75% { 
+      transform: translateX(15%) rotate(0.8deg); 
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes twinkle {
+    0%, 100% { 
+      opacity: 0.3; 
+      transform: scale(0.8); 
+    }
+    50% { 
+      opacity: 1; 
+      transform: scale(1.2); 
+    }
+  }
+
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Custom animations for floating elements */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(-25%);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 3s infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-cream-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-burgundy-400 rounded-lg;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-burgundy-500;
+  }
+
+  /* Focus styles for accessibility */
+  .focus-visible:focus {
+    @apply outline-none ring-2 ring-burgundy-500 ring-offset-2 ring-offset-cream-50;
+  }
+
+  /* Print styles */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: light;
+    }
   }
 }
