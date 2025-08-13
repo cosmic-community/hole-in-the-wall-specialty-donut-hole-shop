@@ -52,8 +52,10 @@ export default function AnimatedBackground({
       let time = 0
       const animateWaves = () => {
         const currentCanvas = canvasRef.current
-        const currentCtx = currentCanvas?.getContext('2d')
-        if (!currentCanvas || !currentCtx) return
+        if (!currentCanvas) return
+        
+        const currentCtx = currentCanvas.getContext('2d')
+        if (!currentCtx) return
         
         currentCtx.clearRect(0, 0, currentCanvas.width, currentCanvas.height)
         
@@ -106,8 +108,10 @@ export default function AnimatedBackground({
       let time = 0
       const animateBubbles = () => {
         const currentCanvas = canvasRef.current
-        const currentCtx = currentCanvas?.getContext('2d')
-        if (!currentCanvas || !currentCtx) return
+        if (!currentCanvas) return
+        
+        const currentCtx = currentCanvas.getContext('2d')
+        if (!currentCtx) return
         
         currentCtx.clearRect(0, 0, currentCanvas.width, currentCanvas.height)
         
@@ -170,8 +174,10 @@ export default function AnimatedBackground({
 
       const animateGeometric = () => {
         const currentCanvas = canvasRef.current
-        const currentCtx = currentCanvas?.getContext('2d')
-        if (!currentCanvas || !currentCtx) return
+        if (!currentCanvas) return
+        
+        const currentCtx = currentCanvas.getContext('2d')
+        if (!currentCtx) return
         
         currentCtx.clearRect(0, 0, currentCanvas.width, currentCanvas.height)
         
