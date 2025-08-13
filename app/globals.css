@@ -4,38 +4,58 @@
 
 @layer base {
   :root {
-    --burgundy-50: #fdf2f8;
-    --burgundy-100: #fce7f3;
-    --burgundy-200: #fbcfe8;
-    --burgundy-300: #f9a8d4;
-    --burgundy-400: #f472b6;
-    --burgundy-500: #ec4899;
-    --burgundy-600: #db2777;
-    --burgundy-700: #be185d;
-    --burgundy-800: #9d174d;
-    --burgundy-900: #831843;
+    --burgundy-50: 253 242 248;
+    --burgundy-100: 252 231 243;
+    --burgundy-200: 251 207 232;
+    --burgundy-300: 249 168 212;
+    --burgundy-400: 244 114 182;
+    --burgundy-500: 236 72 153;
+    --burgundy-600: 219 39 119;
+    --burgundy-700: 190 24 93;
+    --burgundy-800: 157 23 77;
+    --burgundy-900: 131 24 67;
 
-    --cream-50: #fffbf7;
-    --cream-100: #fff7ed;
-    --cream-200: #ffedd5;
-    --cream-300: #fed7aa;
-    --cream-400: #fdba74;
-    --cream-500: #fb923c;
-    --cream-600: #ea580c;
-    --cream-700: #c2410c;
-    --cream-800: #9a3412;
-    --cream-900: #7c2d12;
+    --cream-50: 255 251 247;
+    --cream-100: 255 247 237;
+    --cream-200: 255 237 213;
+    --cream-300: 254 215 170;
+    --cream-400: 253 186 116;
+    --cream-500: 251 146 60;
+    --cream-600: 234 88 12;
+    --cream-700: 194 65 12;
+    --cream-800: 154 52 18;
+    --cream-900: 124 45 18;
 
-    --gold-50: #fffbeb;
-    --gold-100: #fef3c7;
-    --gold-200: #fde68a;
-    --gold-300: #fcd34d;
-    --gold-400: #fbbf24;
-    --gold-500: #f59e0b;
-    --gold-600: #d97706;
-    --gold-700: #b45309;
-    --gold-800: #92400e;
-    --gold-900: #78350f;
+    --gold-50: 255 251 235;
+    --gold-100: 254 243 199;
+    --gold-200: 253 230 138;
+    --gold-300: 252 211 77;
+    --gold-400: 251 191 36;
+    --gold-500: 245 158 11;
+    --gold-600: 217 119 6;
+    --gold-700: 180 83 9;
+    --gold-800: 146 64 14;
+    --gold-900: 120 53 15;
+
+    /* Background and foreground for CSS custom properties */
+    --background: var(--cream-50);
+    --foreground: var(--burgundy-900);
+    
+    --primary: var(--burgundy-600);
+    --primary-foreground: 255 255 255;
+    
+    --secondary: var(--gold-500);
+    --secondary-foreground: 255 255 255;
+    
+    --accent: var(--burgundy-500);
+    --accent-foreground: 255 255 255;
+    
+    --muted: var(--cream-200);
+    --muted-foreground: var(--burgundy-700);
+    
+    --border: var(--cream-300);
+    --input: var(--cream-200);
+    --ring: var(--burgundy-500);
   }
 
   html {
@@ -43,7 +63,8 @@
   }
 
   body {
-    @apply bg-cream-50 text-burgundy-900;
+    background-color: rgb(var(--cream-50) / 1);
+    color: rgb(var(--burgundy-900) / 1);
   }
 }
 
