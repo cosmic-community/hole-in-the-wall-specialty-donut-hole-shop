@@ -97,7 +97,7 @@ export default function AnimatedBackground({
         y: Math.random() * canvas.height,
         radius: Math.random() * 30 + 10,
         speed: (Math.random() * 2 + 1) * speedMultiplier,
-        color: colors[index % colors.length],
+        color: colors[index % colors.length] || '#667eea',
         opacity: Math.random() * 0.3 + 0.1,
         pulsePhase: Math.random() * Math.PI * 2,
         pulseSpeed: Math.random() * 0.05 + 0.02
@@ -163,7 +163,7 @@ export default function AnimatedBackground({
         rotationSpeed: (Math.random() * 0.02 + 0.01) * speedMultiplier,
         driftX: (Math.random() - 0.5) * 0.5 * speedMultiplier,
         driftY: (Math.random() - 0.5) * 0.5 * speedMultiplier,
-        color: colors[index % colors.length],
+        color: colors[index % colors.length] || '#667eea',
         opacity: Math.random() * 0.2 + 0.05,
         type: Math.floor(Math.random() * 3) // 0: triangle, 1: square, 2: hexagon
       }))
@@ -237,7 +237,7 @@ export default function AnimatedBackground({
         rotationSpeed: (Math.random() * 0.005 + 0.002) * speedMultiplier,
         driftX: (Math.random() - 0.5) * 0.3 * speedMultiplier,
         driftY: (Math.random() - 0.5) * 0.3 * speedMultiplier,
-        color: colors[index % colors.length],
+        color: colors[index % colors.length] || '#667eea',
         opacity: Math.random() * 0.15 + 0.05,
         pulsePhase: Math.random() * Math.PI * 2
       }))
