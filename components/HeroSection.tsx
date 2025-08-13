@@ -115,9 +115,11 @@ export default function HeroSection({ businessInfo }: HeroSectionProps) {
                 count={6} 
                 size="small"
                 className={`animate-magical-entrance`}
-                style={{ animationDelay: `${1.4 + index * 0.2}s` }}
               >
-                <div className="card-magical p-8 text-center group hover:glow-magical transition-all duration-500">
+                <div 
+                  className="card-magical p-8 text-center group hover:glow-magical transition-all duration-500"
+                  style={{ animationDelay: `${1.4 + index * 0.2}s` }}
+                >
                   <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300 float">
                     {feature.icon}
                   </div>

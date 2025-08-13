@@ -37,7 +37,7 @@ export default function MagicalEffects({
         sparkle.style.top = Math.random() * 100 + '%'
         
         // Random color
-        const color = colors[Math.floor(Math.random() * colors.length)]
+        const color = colors[Math.floor(Math.random() * colors.length)] || '#9333ea'
         
         // Create sparkle content
         sparkle.innerHTML = '✨'
@@ -72,7 +72,7 @@ export default function MagicalEffects({
         particle.style.top = '100%'
         
         // Random color
-        const color = colors[Math.floor(Math.random() * colors.length)]
+        const color = colors[Math.floor(Math.random() * colors.length)] || '#9333ea'
         particle.style.backgroundColor = color
         particle.style.boxShadow = `0 0 6px ${color}`
         

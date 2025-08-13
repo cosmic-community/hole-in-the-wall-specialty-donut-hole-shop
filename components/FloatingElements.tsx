@@ -47,10 +47,12 @@ export default function FloatingElements({
       const element = document.createElement('div')
       const elementType = elements[i % elements.length]
       
+      if (!elementType) continue
+      
       // Basic styling
       element.className = 'absolute pointer-events-none select-none'
       element.style.fontSize = `${elementType.size}px`
-      element.textContent = elementType.emoji
+      element.textContent = elementType.emoji || '✨'
       element.style.zIndex = '1'
       
       if (elementType.color) {
@@ -70,7 +72,7 @@ export default function FloatingElements({
       }
 
       // Animation properties
-      const baseSpeed = elementType.speed * speedMultiplier
+      const baseSpeed = (elementType.speed || 1) * speedMultiplier
       const animationDuration = (8 + Math.random() * 4) / baseSpeed
       const horizontalDrift = (Math.random() - 0.5) * 200
       const rotationAmount = (Math.random() - 0.5) * 360

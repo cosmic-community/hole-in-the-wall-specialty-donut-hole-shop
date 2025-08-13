@@ -63,7 +63,7 @@ export default function SparkleEffect({
       x: x !== undefined ? x : Math.random() * (containerRect?.width || 300),
       y: y !== undefined ? y : Math.random() * (containerRect?.height || 200),
       size: sparkleSize,
-      color: colors[Math.floor(Math.random() * colors.length)],
+      color: colors[Math.floor(Math.random() * colors.length)] || '#9333ea',
       opacity: Math.random() * 0.8 + 0.2,
       life: 0,
       maxLife: Math.random() * 60 + 60,
@@ -140,8 +140,8 @@ export default function SparkleEffect({
   }
 
   const SparkleComponent = ({ sparkle }: { sparkle: Sparkle }) => {
-    const sparkleStyle = {
-      position: 'absolute' as const,
+    const sparkleStyle: React.CSSProperties = {
+      position: 'absolute',
       left: `${sparkle.x}px`,
       top: `${sparkle.y}px`,
       width: `${sparkle.size}px`,
@@ -149,8 +149,8 @@ export default function SparkleEffect({
       color: sparkle.color,
       opacity: sparkle.opacity,
       transform: `rotate(${sparkle.rotation}deg)`,
-      pointerEvents: 'none' as const,
-      userSelect: 'none' as const,
+      pointerEvents: 'none',
+      userSelect: 'none',
       fontSize: `${sparkle.size}px`,
       lineHeight: 1,
       zIndex: 10
